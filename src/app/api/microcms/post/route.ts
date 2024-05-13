@@ -11,7 +11,6 @@ export async function GET(request: NextRequest) {
     });
   }
   const draftKey = searchParams.get("draftKey");
-  console.log("### draftKey", draftKey);
   const requestOptions: {
     endpoint: string;
     contentId: string;
