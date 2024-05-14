@@ -1,3 +1,4 @@
+import { CMS_SERVICE } from "@/environments";
 import { BlogContentsType, BlogTagsType } from "../type";
 import {
   fetchBlogTags as fetchMicroCMSBlogTags,
@@ -7,8 +8,6 @@ import {
   fetchBlogTags as fetchWordpressBlogTags,
   fetchBlogPosts as fetchWordpressBlogPosts,
 } from "./wordpress";
-
-const CMS_SERVICE = process.env.CMS_SERVICE;
 
 export const fetchBlogTags = async (): Promise<BlogTagsType[]> => {
   if (CMS_SERVICE === "microcms") {

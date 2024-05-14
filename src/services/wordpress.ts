@@ -1,7 +1,6 @@
 import axios from "axios";
 import { BlogContentsType, BlogTagsType } from "../type";
-
-const WORDPRESS_BASE_ENDPOINT = process.env.WORDPRESS_BASE_ENDPOINT;
+import { WORDPRESS_BASE_ENDPOINT } from "@/environments";
 
 type WordPressPost = {
   id: number;

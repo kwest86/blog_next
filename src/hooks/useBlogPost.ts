@@ -4,8 +4,7 @@ import { BlogContentsType } from "../type";
 import { getHeadings } from "../utils/getHeadings";
 import { fetchBlogPost as fetchMicroCMSBlogPost } from "../services/microcms";
 import { fetchBlogPost as fetchWordPressBlogPost } from "../services/wordpress";
-
-const CMS_SERVICE = process.env.CMS_SERVICE;
+import { CMS_SERVICE } from "@/environments";
 
 export const useBlogPost = (
   id: string | undefined,

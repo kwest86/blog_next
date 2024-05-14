@@ -1,6 +1,6 @@
 "use client";
 
-const NEXT_PUBLIC_PROXY_WORKER_URL = process.env.NEXT_PUBLIC_PROXY_WORKER_URL;
+import { PROXY_WORKER_URL } from "@/environments";
 
 export type LinkInfo = {
   title: string;
@@ -33,7 +33,7 @@ export async function fetchLinkInfo(url: string): Promise<LinkInfo> {
 
   // キャッシュにデータがない場合は、リクエストを行う
   const response = await fetch(
-    `${NEXT_PUBLIC_PROXY_WORKER_URL}?url=${encodeURIComponent(url)}`
+    `${PROXY_WORKER_URL}?url=${encodeURIComponent(url)}`
   );
   const html = await response.text();
   const parser = new DOMParser();

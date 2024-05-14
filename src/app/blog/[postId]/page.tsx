@@ -4,6 +4,7 @@ import { transformMicroCMSResponse } from "../../../services/microcms";
 import { fetchBlogPost as fetchWordPressBlogPost } from "../../../services/wordpress";
 import { BlogContentsType } from "@/type";
 import { RenderPost } from "@/components/molecules/RenderPost";
+import { APP_URL, CMS_SERVICE } from "@/environments";
 
 async function getPost({
   postId,
@@ -12,8 +13,6 @@ async function getPost({
   postId: string;
   draftKey?: string | undefined;
 }): Promise<BlogContentsType | null> {
-  const CMS_SERVICE = process.env.CMS_SERVICE;
-  const APP_URL = process.env.APP_URL;
   try {
     switch (CMS_SERVICE) {
       case "microcms": {
