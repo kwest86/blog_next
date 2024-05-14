@@ -2,7 +2,6 @@ import { transformMicroCMSResponse } from "../../../services/microcms";
 import { fetchBlogPost as fetchWordPressBlogPost } from "../../../services/wordpress";
 import { BlogContentsType } from "@/type";
 import { CMS_SERVICE } from "@/environments";
-import { headers } from "next/headers";
 import { RenderPost } from "@/components/molecules/RenderPost";
 
 async function getPost({
@@ -12,14 +11,16 @@ async function getPost({
   postId: string;
   draftKey?: string | undefined;
 }): Promise<BlogContentsType | null> {
-  const host = headers().get("host");
+  const apiUrl = process.env.NEXT_PUBLIC_APP_URL;
+  console.log("apiUrl", apiUrl);
   try {
     switch (CMS_SERVICE) {
       case "microcms": {
         const response = await fetch(
-          `http://${host}/api/microcms/post?id=${postId}${draftKey ? `&draftKey=${draftKey}` : ""}`,
+          `${apiUrl}/api/microcms/post?id=${postId}${draftKey ? `&draftKey=${draftKey}` : ""}`,
           { method: "GET" }
         );
+        console.log("response", response);
         const post = await response.json();
         return transformMicroCMSResponse(post);
       }
