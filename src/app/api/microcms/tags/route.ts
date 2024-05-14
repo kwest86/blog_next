@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import { client } from "@/libs/client";
 import { NextResponse } from "next/server";
 
