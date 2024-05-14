@@ -3,7 +3,6 @@ export const runtime = "edge";
 import { transformMicroCMSResponse } from "../../../services/microcms";
 import { fetchBlogPost as fetchWordPressBlogPost } from "../../../services/wordpress";
 import { BlogContentsType } from "@/type";
-import { CMS_SERVICE } from "@/environments";
 import { RenderPost } from "@/components/molecules/RenderPost";
 
 async function getPost({
@@ -13,12 +12,13 @@ async function getPost({
   postId: string;
   draftKey?: string | undefined;
 }): Promise<BlogContentsType | null> {
-  const apiUrl = process.env.NEXT_PUBLIC_APP_URL;
+  const CMS_SERVICE = process.env.CMS_SERVICE;
+  const APP_URL = process.env.APP_URL;
   try {
     switch (CMS_SERVICE) {
       case "microcms": {
         const response = await fetch(
-          `${apiUrl}/api/microcms/post?id=${postId}${draftKey ? `&draftKey=${draftKey}` : ""}`,
+          `${APP_URL}/api/microcms/post?id=${postId}${draftKey ? `&draftKey=${draftKey}` : ""}`,
           { method: "GET" }
         );
         const post = await response.json();

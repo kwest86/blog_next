@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { HeadingType } from "../components/atoms/TableContentHeader";
-import { CMS_SERVICE } from "../environments";
 import { BlogContentsType } from "../type";
 import { getHeadings } from "../utils/getHeadings";
 import { fetchBlogPost as fetchMicroCMSBlogPost } from "../services/microcms";
 import { fetchBlogPost as fetchWordPressBlogPost } from "../services/wordpress";
+
+const CMS_SERVICE = process.env.CMS_SERVICE;
 
 export const useBlogPost = (
   id: string | undefined,
