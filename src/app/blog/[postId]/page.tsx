@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import { transformMicroCMSResponse } from "../../../services/microcms";
 import { fetchBlogPost as fetchWordPressBlogPost } from "../../../services/wordpress";
 import { BlogContentsType } from "@/type";
