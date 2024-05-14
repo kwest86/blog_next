@@ -12,7 +12,6 @@ async function getPost({
   draftKey?: string | undefined;
 }): Promise<BlogContentsType | null> {
   const apiUrl = process.env.NEXT_PUBLIC_APP_URL;
-  console.log("apiUrl", apiUrl);
   try {
     switch (CMS_SERVICE) {
       case "microcms": {
@@ -20,7 +19,6 @@ async function getPost({
           `${apiUrl}/api/microcms/post?id=${postId}${draftKey ? `&draftKey=${draftKey}` : ""}`,
           { method: "GET" }
         );
-        console.log("response", response);
         const post = await response.json();
         return transformMicroCMSResponse(post);
       }
