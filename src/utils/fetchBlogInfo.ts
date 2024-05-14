@@ -1,3 +1,5 @@
+"use client";
+
 import { PROXY_WORKER_URL } from "../environments";
 
 export type LinkInfo = {

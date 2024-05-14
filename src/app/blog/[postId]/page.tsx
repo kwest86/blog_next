@@ -15,15 +15,17 @@ async function getPost({
   const host = headers().get("host");
   try {
     switch (CMS_SERVICE) {
-      case "microcms":
+      case "microcms": {
         const response = await fetch(
           `http://${host}/api/microcms/post?id=${postId}${draftKey ? `&draftKey=${draftKey}` : ""}`,
           { method: "GET" }
         );
         const post = await response.json();
         return transformMicroCMSResponse(post);
-      case "wordpress":
+      }
+      case "wordpress": {
         return await fetchWordPressBlogPost(postId);
+      }
       default:
         throw new Error(`Unsupported CMS service: ${CMS_SERVICE}`);
     }

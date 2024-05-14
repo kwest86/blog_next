@@ -44,7 +44,7 @@ const transformWordPressResponse = (
       id: category.id.toString(),
       name: category.name,
     })),
-    thumbnail: { url: featuredMedia?.source_url || "" },
+    thumbnail: featuredMedia?.source_url || "",
   };
 };
 
