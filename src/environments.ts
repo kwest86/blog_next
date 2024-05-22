@@ -1,6 +1,6 @@
 import { CMSServiceType } from "./type";
 
-export const APP_TITLE = process.env.NEXT_PUBLIC_CMS_DOMAIN;
+export const APP_TITLE = process.env.NEXT_PUBLIC_APP_TITLE;
 export const APP_DESCRIPTION = process.env.NEXT_PUBLIC_APP_DESCRIPTION;
 export const APP_URL = process.env.NEXT_PUBLIC_APP_URL;
 export const CMS_SERVICE: CMSServiceType = "microcms";
