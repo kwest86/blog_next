@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { Providers } from "../providers";
 import { fonts } from "../fonts";
 import { Layout } from "@/components/atoms/Layout";
+import { APP_DESCRIPTION, APP_TITLE } from "@/environments";
 
 export const metadata: Metadata = {
-  title: "テクもぐ",
-  description: "色んな技術を食べ歩き！",
+  title: APP_TITLE,
+  description: APP_DESCRIPTION,
 };
 
 export default function RootLayout({
