@@ -41,7 +41,7 @@ function PcBlogCard({
               h="150px"
               w="200px"
               mr={4}
-              objectFit="cover"
+              objectFit="contain"
             />
             <Box flex={1}>
               <Flex>
