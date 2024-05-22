@@ -21,7 +21,7 @@ import { APP_TITLE } from "@/environments";
 
 function PcHeader(): ReactElement {
   return (
-    <Box as="header" bg="bg.secondaly" w="100%" py={4}>
+    <Box as="header" bg="bg.secondaly" w="100%" py="10px" minH="40px">
       <Flex mx="auto" align="center" w="90%" maxW="1200px">
         <Link href="/" passHref>
           <Text fontSize="xl" fontWeight="bold" ml={5}>
@@ -51,7 +51,7 @@ function PcHeader(): ReactElement {
 
 function SpHeader(): ReactElement {
   return (
-    <Box as="header" bg="bg.secondaly" w="100%" py={4}>
+    <Box as="header" bg="bg.secondaly" w="100%" py="10px" minH="40px">
       <Flex maxW="container.lg" mx="auto" width="100%" align="center" mr={10}>
         <Link href="/" passHref>
           <Text fontSize="xl" fontWeight="bold" ml={5}>

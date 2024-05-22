@@ -16,7 +16,7 @@ function PcLayout({ children, isLoading }: LayoutProps): ReactElement {
       w="90%"
       minW="400px"
       maxW="1200px"
-      minH="100vh"
+      minH="100vh - 60px" // HeaderのminH
       px={8}
       pb="30px"
       mx="auto"
@@ -51,7 +51,7 @@ function PcLayout({ children, isLoading }: LayoutProps): ReactElement {
 
 function SpLayout({ children, isLoading }: LayoutProps): ReactElement {
   return (
-    <Box w="100%" minH="100vh" p={4} pb="30px" mx="auto" bg="white">
+    <Box w="100%" minH="100vh - 60px" p={4} pb="30px" mx="auto" bg="white">
       <Box mx="auto" maxW="container.xl">
         {isLoading ? (
           <>
