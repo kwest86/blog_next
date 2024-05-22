@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, FlexProps, Text, Link as ChakraLink } from "@chakra-ui/react";
+import { Flex, FlexProps, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
 
 interface IconWithTextProps extends FlexProps {
@@ -23,7 +23,7 @@ const IconWithText: React.FC<IconWithTextProps> = ({
 
   return to ? (
     <NextLink href={to} passHref>
-      <ChakraLink>{content}</ChakraLink>
+      {content}
     </NextLink>
   ) : (
     <>{content}</>
