@@ -1,6 +1,4 @@
-"use client";
-
-import { PROXY_WORKER_URL } from "@/environments";
+import { APP_URL } from "@/environments";
 
 export type LinkInfo = {
   title: string;
@@ -33,24 +31,15 @@ export async function fetchLinkInfo(url: string): Promise<LinkInfo> {
 
   // キャッシュにデータがない場合は、リクエストを行う
   const response = await fetch(
-    `${PROXY_WORKER_URL}?url=${encodeURIComponent(url)}`
+    `${APP_URL}/api/ogp?url=${encodeURIComponent(url)}`
   );
-  const html = await response.text();
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(html, "text/html");
-
-  const getMetaContent = (name: string): string | null => {
-    const element = doc.querySelector(`meta[property="${name}"]`);
-    return element ? element.getAttribute("content") : null;
-  };
-
-  const title = getMetaContent("og:title") || "";
-  const description = getMetaContent("og:description") || "";
-  const image = getMetaContent("og:image") || "";
-  const favicon =
-    getLinkHref(doc, "icon", url) ||
-    getLinkHref(doc, "shortcut icon", url) ||
-    "";
+  const data = await response.json();
+  const {
+    ogTitle: title,
+    ogDescription: description,
+    ogImage: image,
+    favicon: favicon,
+  } = data;
 
   // 取得したデータをキャッシュに保存
   const linkInfo = { title, description, image, favicon };
