@@ -7,21 +7,6 @@ export type LinkInfo = {
   favicon: string;
 };
 
-function getLinkHref(
-  doc: Document,
-  rel: string,
-  baseUrl: string
-): string | null {
-  const element = doc.querySelector(`link[rel="${rel}"]`);
-  if (element) {
-    const href = element.getAttribute("href");
-    if (href) {
-      return new URL(href, baseUrl).toString();
-    }
-  }
-  return null;
-}
-
 export async function fetchLinkInfo(url: string): Promise<LinkInfo> {
   // URLに基づいてキャッシュからデータを取得
   const cachedData = sessionStorage.getItem(url);
