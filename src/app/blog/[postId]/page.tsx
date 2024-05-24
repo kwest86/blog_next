@@ -1,10 +1,23 @@
 export const runtime = "edge";
 
+import dynamic from "next/dynamic";
 import { transformMicroCMSResponse } from "../../../services/microcms";
 import { fetchBlogPost as fetchWordPressBlogPost } from "../../../services/wordpress";
 import { BlogContentsType } from "@/type";
-import { RenderPost } from "@/components/molecules/RenderPost";
 import { APP_URL, CMS_SERVICE } from "@/environments";
+
+const RenderPost = dynamic<{ blogContents: BlogContentsType }>(
+  () =>
+    import("@/components/molecules/RenderPost").then(
+      (mod) =>
+        mod.RenderPost as React.ComponentType<{
+          blogContents: BlogContentsType;
+        }>
+    ),
+  {
+    ssr: false,
+  }
+);
 
 async function getPost({
   postId,
