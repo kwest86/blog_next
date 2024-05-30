@@ -4,9 +4,7 @@ import { DOMNode, Element as HtmlElement } from "html-react-parser";
 import domToReact from "html-react-parser/lib/dom-to-react";
 
 export const RenderHeading = (domNode: HtmlElement): ReactElement => {
-  const children: DOMNode[] = Array.from(
-    domNode.children as unknown as DOMNode[],
-  );
+  const children: DOMNode[] = Array.from(domNode.children as unknown as DOMNode[]);
   const titleElements = domToReact(children);
   const title = Array.isArray(titleElements)
     ? titleElements
@@ -14,8 +12,7 @@ export const RenderHeading = (domNode: HtmlElement): ReactElement => {
         .join("")
     : titleElements.toString();
   const id = title.toLowerCase().replace(/\s+/g, "-");
-  const fontSize =
-    domNode.name === "h1" ? "2xl" : domNode.name === "h2" ? "xl" : "xl";
+  const fontSize = domNode.name === "h1" ? "2xl" : domNode.name === "h2" ? "xl" : "xl";
 
   // asプロパティに型アサーションを使用
   const asElement: As = domNode.name as keyof JSX.IntrinsicElements;
@@ -31,9 +28,7 @@ export const RenderHeading = (domNode: HtmlElement): ReactElement => {
       >
         {titleElements}
       </Box>
-      {domNode.name === "h1" && (
-        <Box borderBottom="1px" borderColor="gray.500" />
-      )}
+      {domNode.name === "h1" && <Box borderBottom="1px" borderColor="gray.500" />}
     </Box>
   );
 };

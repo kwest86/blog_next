@@ -31,7 +31,7 @@ export type MicroCMSResponseType = {
 };
 
 export const transformMicroCMSResponse = (
-  response: MicroCMSResponseType
+  response: MicroCMSResponseType,
 ): BlogContentsType => {
   let content = response.content;
   if (response.content_with_html) {
@@ -57,7 +57,7 @@ export const transformMicroCMSResponse = (
 
 export async function fetchBlogPost(
   id: string | undefined,
-  draftKey?: string | null
+  draftKey?: string | null,
 ): Promise<BlogContentsType | null> {
   if (!id) {
     throw new Error("");
@@ -65,7 +65,7 @@ export async function fetchBlogPost(
   try {
     const response = await fetch(
       `/api/microcms/post?id=${id}${draftKey ? `&draftKey=${draftKey}` : ""}`,
-      { method: "GET" }
+      { method: "GET" },
     );
     if (!response.ok) {
       throw new Error(`Fetch Post Error! status: ${response.status}`);
@@ -79,20 +79,18 @@ export async function fetchBlogPost(
 }
 
 export async function fetchBlogPosts(
-  selectedTag?: string
+  selectedTag?: string,
 ): Promise<BlogContentsType[]> {
   try {
     const response = await fetch(
       `/api/microcms/posts${selectedTag ? `?tag=${selectedTag}` : ""}`,
-      { method: "GET" }
+      { method: "GET" },
     );
     if (!response.ok) {
       throw new Error(`Fetch Posts Error! status: ${response.status}`);
     }
     const posts = await response.json();
-    return posts.map((item: MicroCMSResponseType) =>
-      transformMicroCMSResponse(item)
-    );
+    return posts.map((item: MicroCMSResponseType) => transformMicroCMSResponse(item));
   } catch (error) {
     console.error("Error fetching posts:", error);
     throw error;

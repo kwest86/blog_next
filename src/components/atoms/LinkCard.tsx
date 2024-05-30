@@ -1,15 +1,7 @@
 "use client";
 
 import { ReactElement, useEffect, useState } from "react";
-import {
-  Box,
-  Text,
-  Link,
-  Image,
-  AspectRatio,
-  Flex,
-  Icon,
-} from "@chakra-ui/react";
+import { Box, Text, Link, Image, AspectRatio, Flex, Icon } from "@chakra-ui/react";
 import {
   DOMNode,
   Element as HtmlElement,

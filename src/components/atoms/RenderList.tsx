@@ -5,12 +5,7 @@ import {
   Element as HtmlElement,
   domToReact,
 } from "html-react-parser";
-import {
-  UnorderedList,
-  OrderedList,
-  ListItem,
-  ListIcon,
-} from "@chakra-ui/react";
+import { UnorderedList, OrderedList, ListItem, ListIcon } from "@chakra-ui/react";
 import { FaCheckCircle } from "react-icons/fa";
 
 export const RenderList = (

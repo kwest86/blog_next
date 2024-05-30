@@ -17,15 +17,12 @@ export const RenderParagraph = (
   const styleProps: BoxProps = {};
 
   if (domNode.attribs.style) {
-    const styles = domNode.attribs.style
-      .split(";")
-      .map((style) => style.trim());
+    const styles = domNode.attribs.style.split(";").map((style) => style.trim());
     styles.forEach((style) => {
       const [property, value] = style.split(":");
       if (property && value) {
         if (property.trim() === "text-align") {
-          styleProps.textAlign =
-            value.trim() as ResponsiveValue<Property.TextAlign>;
+          styleProps.textAlign = value.trim() as ResponsiveValue<Property.TextAlign>;
         } else {
           styleProps[property.trim() as keyof BoxProps] = value.trim();
         }

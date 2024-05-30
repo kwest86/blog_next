@@ -74,17 +74,16 @@ export function RenderPost({
               <DateTextIcon date={blogContents?.createdAt} type="createdAt" />
             )}
           </Flex>
-          {blogContents?.revisedAt &&
-            isMoreThanOneYearAgo(blogContents.revisedAt) && (
-              <Flex w="100%" bg="yellow" mt={2}>
-                <IconWithText
-                  icon={ImWarning}
-                  text="この記事は最終更新日から1年以上が経過しています"
-                  mt={2}
-                  ml={2}
-                />
-              </Flex>
-            )}
+          {blogContents?.revisedAt && isMoreThanOneYearAgo(blogContents.revisedAt) && (
+            <Flex w="100%" bg="yellow" mt={2}>
+              <IconWithText
+                icon={ImWarning}
+                text="この記事は最終更新日から1年以上が経過しています"
+                mt={2}
+                ml={2}
+              />
+            </Flex>
+          )}
         </Box>
         {blogContents && <>{parse(blogContents.content, options)}</>}
       </VStack>

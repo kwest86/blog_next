@@ -5,23 +5,14 @@ import {
   Element as HtmlElement,
   domToReact,
 } from "html-react-parser";
-import {
-  Table,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-  Box,
-} from "@chakra-ui/react";
+import { Table, Tbody, Tr, Th, Td, TableContainer, Box } from "@chakra-ui/react";
 
 export const RenderTable = (
   domNode: HtmlElement,
   options: HTMLReactParserOptions,
 ): ReactElement | null => {
   const tbody = domNode.children.find(
-    (child): child is HtmlElement =>
-      child.type === "tag" && child.name === "tbody",
+    (child): child is HtmlElement => child.type === "tag" && child.name === "tbody",
   );
 
   if (!tbody) {
@@ -29,8 +20,7 @@ export const RenderTable = (
   }
 
   const rows = tbody.children.filter(
-    (child): child is HtmlElement =>
-      child.type === "tag" && child.name === "tr",
+    (child): child is HtmlElement => child.type === "tag" && child.name === "tr",
   );
 
   return (
@@ -54,16 +44,14 @@ export const RenderTable = (
                     );
 
                     // <p>タグにtext-alignが指定されていればそれに従う
-                    let textAlign: "left" | "center" | "right" | "justify" =
-                      "left";
+                    let textAlign: "left" | "center" | "right" | "justify" = "left";
                     const paragraph = cell.children.find(
                       (child): child is HtmlElement =>
                         child.type === "tag" && child.name === "p",
                     );
                     if (paragraph && paragraph.attribs.style) {
-                      const alignMatch = paragraph.attribs.style.match(
-                        /text-align:\s*([\w-]+)/i,
-                      );
+                      const alignMatch =
+                        paragraph.attribs.style.match(/text-align:\s*([\w-]+)/i);
                       if (alignMatch) {
                         textAlign = alignMatch[1] as
                           | "left"

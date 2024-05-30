@@ -59,12 +59,7 @@ export const renderElements = (
     }
     case "figure":
       return (
-        <Box
-          display="flex"
-          justifyContent="center"
-          width="100%"
-          maxHeight="500px"
-        >
+        <Box display="flex" justifyContent="center" width="100%" maxHeight="500px">
           {renderNodeChildren(domNode, options)}
         </Box>
       );

@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
         headers: {
           "Content-Type": "application/json",
         },
-      }
+      },
     );
   }
 
@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
     const html = await response.text();
     const ogTitle = html.match(/<meta property="og:title" content="(.*?)"\/?>/);
     const ogDescription = html.match(
-      /<meta property="og:description" content="(.*?)"\/?>/
+      /<meta property="og:description" content="(.*?)"\/?>/,
     );
     const ogImage = html.match(/<meta property="og:image" content="(.*?)"\/?>/);
     const favicon =
@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
         headers: {
           "Content-Type": "application/json",
         },
-      }
+      },
     );
   } catch (error) {
     console.error(error);

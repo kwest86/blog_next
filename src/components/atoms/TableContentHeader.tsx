@@ -15,9 +15,7 @@ interface TableOfContentsProps {
   headings: HeadingType[];
 }
 
-export function TableContentHeader({
-  headings,
-}: TableOfContentsProps): ReactElement {
+export function TableContentHeader({ headings }: TableOfContentsProps): ReactElement {
   const headerHight = 40;
   const [isOpen, setIsOpen] = useState(false);
   const [activeHeadingId, setActiveHeadingId] = useState("");
@@ -109,9 +107,7 @@ export function TableContentHeader({
                 >
                   <ListIcon
                     as={FiCircle}
-                    color={
-                      activeHeadingId === heading.id ? "blue.500" : "gray.300"
-                    }
+                    color={activeHeadingId === heading.id ? "blue.500" : "gray.300"}
                     boxSize={`${0.5 + (3 - heading.level) * 0.25}rem`}
                     mr={2}
                     fill="currentColor"

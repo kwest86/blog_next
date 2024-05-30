@@ -21,7 +21,7 @@ export const fetchBlogTags = async (): Promise<BlogTagsType[]> => {
 };
 
 export const fetchBlogPosts = async (
-  selectedTag?: string
+  selectedTag?: string,
 ): Promise<BlogContentsType[]> => {
   if (CMS_SERVICE === "microcms") {
     return fetchMicroCMSBlogPosts(selectedTag);

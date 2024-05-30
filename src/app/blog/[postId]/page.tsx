@@ -12,11 +12,11 @@ const RenderPost = dynamic<{ blogContents: BlogContentsType }>(
       (mod) =>
         mod.RenderPost as React.ComponentType<{
           blogContents: BlogContentsType;
-        }>
+        }>,
     ),
   {
     ssr: false,
-  }
+  },
 );
 
 async function getPost({
@@ -31,7 +31,7 @@ async function getPost({
       case "microcms": {
         const response = await fetch(
           `${APP_URL}/api/microcms/post?id=${postId}${draftKey ? `&draftKey=${draftKey}` : ""}`,
-          { method: "GET" }
+          { method: "GET" },
         );
         const post = await response.json();
         return transformMicroCMSResponse(post);

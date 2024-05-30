@@ -124,10 +124,7 @@ function SpBlogCard({ post, setSelectedTag }: BlogCardProps): ReactElement {
   );
 }
 
-export function BlogCard({
-  post,
-  setSelectedTag,
-}: BlogCardProps): ReactElement {
+export function BlogCard({ post, setSelectedTag }: BlogCardProps): ReactElement {
   const isSp = useMediaQuery(mobileQuery);
   const [featuredImage, setFeaturedImage] = useState<string | undefined>();
 

@@ -31,7 +31,7 @@ type WordPressFeaturedMedia = {
 const transformWordPressResponse = (
   post: WordPressPost,
   categories: WordPressCategory[],
-  featuredMedia: WordPressFeaturedMedia | null
+  featuredMedia: WordPressFeaturedMedia | null,
 ): BlogContentsType => {
   return {
     id: post.id.toString(),
@@ -48,25 +48,23 @@ const transformWordPressResponse = (
   };
 };
 
-export const fetchBlogPost = async (
-  id: string
-): Promise<BlogContentsType | null> => {
+export const fetchBlogPost = async (id: string): Promise<BlogContentsType | null> => {
   try {
     const response = await axios.get<WordPressPost>(
-      `${WORDPRESS_BASE_ENDPOINT}/posts/${id}`
+      `${WORDPRESS_BASE_ENDPOINT}/posts/${id}`,
     );
     console.log(response);
     const post = response.data;
 
     const categoriesResponse = await axios.get<WordPressCategory[]>(
-      `${WORDPRESS_BASE_ENDPOINT}/categories?post=${id}`
+      `${WORDPRESS_BASE_ENDPOINT}/categories?post=${id}`,
     );
     const categories = categoriesResponse.data;
 
     let featuredMedia: WordPressFeaturedMedia | null = null;
     if (post.featured_media) {
       const featuredMediaResponse = await axios.get<WordPressFeaturedMedia>(
-        `${WORDPRESS_BASE_ENDPOINT}/media/${post.featured_media}`
+        `${WORDPRESS_BASE_ENDPOINT}/media/${post.featured_media}`,
       );
       featuredMedia = featuredMediaResponse.data;
     }
@@ -79,12 +77,12 @@ export const fetchBlogPost = async (
 };
 
 export const fetchBlogPosts = async (
-  selectedTag?: string
+  selectedTag?: string,
 ): Promise<BlogContentsType[]> => {
   try {
     const queryParams = selectedTag ? `?categories=${selectedTag}` : "";
     const response = await axios.get<WordPressPost[]>(
-      `${WORDPRESS_BASE_ENDPOINT}/posts${queryParams}`
+      `${WORDPRESS_BASE_ENDPOINT}/posts${queryParams}`,
     );
     console.log(response);
     const posts = response.data;
@@ -92,20 +90,20 @@ export const fetchBlogPosts = async (
     const blogContents: BlogContentsType[] = await Promise.all(
       posts.map(async (post) => {
         const categoriesResponse = await axios.get<WordPressCategory[]>(
-          `${WORDPRESS_BASE_ENDPOINT}/categories?post=${post.id}`
+          `${WORDPRESS_BASE_ENDPOINT}/categories?post=${post.id}`,
         );
         const categories = categoriesResponse.data;
 
         let featuredMedia: WordPressFeaturedMedia | null = null;
         if (post.featured_media) {
           const featuredMediaResponse = await axios.get<WordPressFeaturedMedia>(
-            `${WORDPRESS_BASE_ENDPOINT}/media/${post.featured_media}`
+            `${WORDPRESS_BASE_ENDPOINT}/media/${post.featured_media}`,
           );
           featuredMedia = featuredMediaResponse.data;
         }
 
         return transformWordPressResponse(post, categories, featuredMedia);
-      })
+      }),
     );
 
     return blogContents;
@@ -118,7 +116,7 @@ export const fetchBlogPosts = async (
 export const fetchBlogTags = async (): Promise<BlogTagsType[]> => {
   try {
     const response = await axios.get<WordPressCategory[]>(
-      `${WORDPRESS_BASE_ENDPOINT}/categories`
+      `${WORDPRESS_BASE_ENDPOINT}/categories`,
     );
     const categories = response.data;
 

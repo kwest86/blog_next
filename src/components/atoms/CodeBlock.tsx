@@ -11,10 +11,7 @@ type CodeBlockProps = {
   language: string;
 };
 
-export function CodeBlock({
-  codeHtml,
-  language,
-}: CodeBlockProps): ReactElement {
+export function CodeBlock({ codeHtml, language }: CodeBlockProps): ReactElement {
   const [isFocused, setIsFocused] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
@@ -36,11 +33,7 @@ export function CodeBlock({
       onMouseLeave={() => setIsFocused(false)}
     >
       <Box position="relative">
-        <SyntaxHighlighter
-          language={language}
-          style={hybrid}
-          showLineNumbers={false}
-        >
+        <SyntaxHighlighter language={language} style={hybrid} showLineNumbers={false}>
           {codeHtml}
         </SyntaxHighlighter>
         <Tooltip

@@ -7,7 +7,7 @@ import { renderNodeChildren } from "./RenderNodeChildren";
 export const RenderBlockquote = (domNode: HtmlElement): ReactElement => {
   if (domNode.attribs.class === "twitter-tweet") {
     const hrefNode = domNode.children.find(
-      (child) => child instanceof HtmlElement && child.tagName === "a"
+      (child) => child instanceof HtmlElement && child.tagName === "a",
     );
     if (hrefNode instanceof HtmlElement) {
       const hrefAttr = hrefNode.attributes.find((attr) => attr.name === "href");

@@ -1,10 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import { ReactElement } from "react";
 import { renderNodeChildren } from "./RenderNodeChildren";
-import {
-  HTMLReactParserOptions,
-  Element as HtmlElement,
-} from "html-react-parser";
+import { HTMLReactParserOptions, Element as HtmlElement } from "html-react-parser";
 
 export const RenderDiv = (
   domNode: HtmlElement,

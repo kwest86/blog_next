@@ -2,9 +2,7 @@ import { BoxProps } from "@chakra-ui/react";
 import { Element } from "domhandler";
 
 // data-属性からBoxPropsに変換するヘルパー関数
-export const convertDataAttributesToProps = (
-  domNode: Element,
-): Partial<BoxProps> => {
+export const convertDataAttributesToProps = (domNode: Element): Partial<BoxProps> => {
   const props: Partial<BoxProps> = {};
 
   Object.keys(domNode.attribs).forEach((key) => {

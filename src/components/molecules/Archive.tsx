@@ -68,11 +68,7 @@ export function Archive({ tag }: ArchiveProps): ReactElement {
         {posts &&
           posts.length > 0 &&
           posts.map((item) => (
-            <BlogCard
-              key={item.id}
-              post={item}
-              setSelectedTag={setSelectedTag}
-            />
+            <BlogCard key={item.id} post={item} setSelectedTag={setSelectedTag} />
           ))}
       </Flex>
     </Flex>

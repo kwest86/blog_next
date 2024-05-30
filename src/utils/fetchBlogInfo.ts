@@ -15,9 +15,7 @@ export async function fetchLinkInfo(url: string): Promise<LinkInfo> {
   }
 
   // キャッシュにデータがない場合は、リクエストを行う
-  const response = await fetch(
-    `${APP_URL}/api/ogp?url=${encodeURIComponent(url)}`
-  );
+  const response = await fetch(`${APP_URL}/api/ogp?url=${encodeURIComponent(url)}`);
   const data = await response.json();
   const {
     ogTitle: title,

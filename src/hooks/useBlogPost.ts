@@ -6,10 +6,7 @@ import { fetchBlogPost as fetchMicroCMSBlogPost } from "../services/microcms";
 import { fetchBlogPost as fetchWordPressBlogPost } from "../services/wordpress";
 import { CMS_SERVICE } from "@/environments";
 
-export const useBlogPost = (
-  id: string | undefined,
-  draftKey: string | null
-) => {
+export const useBlogPost = (id: string | undefined, draftKey: string | null) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [headings, setHeadings] = useState<HeadingType[]>([]);

@@ -1,6 +1,6 @@
 export function formatDate(
   dateString: string | undefined,
-  locale: string = "ja-JP"
+  locale: string = "ja-JP",
 ): string {
   if (!dateString) {
     return "N/A";
