@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint --config .eslintrc.cjs --ext .ts,.js,.tsx . --fix && prettier --write \"./**/*.{ts,js,tsx,scss}\"",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json}\""
   },
   "dependencies": {

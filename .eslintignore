@@ -1,0 +1,8 @@
+node_modules
+.next
+out
+public
+.prettierrc.js
+.eslintrc.js
+next.config.js
+postcss.config.js
