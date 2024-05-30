@@ -5,6 +5,7 @@ import { transformMicroCMSResponse } from "../../../services/microcms";
 import { fetchBlogPost as fetchWordPressBlogPost } from "../../../services/wordpress";
 import { BlogContentsType } from "@/type";
 import { APP_URL, CMS_SERVICE } from "@/environments";
+import { Metadata } from "next";
 
 const RenderPost = dynamic<{ blogContents: BlogContentsType }>(
   () =>
@@ -46,6 +47,37 @@ async function getPost({
     console.error("Error fetching blog post:", error);
     throw error;
   }
+}
+
+// FIXME: getPostが「meta情報の取得」と「コンテンツのレンダリング」の2回呼ばれているので改善すべき
+export async function generateMetadata({
+  params,
+  searchParams,
+}: {
+  params: { postId: string };
+  searchParams: { [key: string]: string | undefined };
+}): Promise<Metadata | null> {
+  const blogPost = await getPost({
+    postId: params.postId,
+    draftKey: searchParams.draftKey,
+  });
+  if (!blogPost) {
+    return null;
+  }
+  return {
+    title: `${blogPost.title}`,
+    description: blogPost.description,
+    openGraph: {
+      title: blogPost.title,
+      description: blogPost.description,
+      url: `${APP_URL}/api/ogp?image?title=${blogPost.title}`,
+    },
+    twitter: {
+      title: blogPost.title,
+      card: "summary_large_image",
+      description: blogPost.description,
+    },
+  };
 }
 
 export default async function Page({
