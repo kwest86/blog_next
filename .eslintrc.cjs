@@ -12,9 +12,7 @@ module.exports = {
   plugins: ["react-refresh", "unused-imports"],
   rules: {
     "unused-imports/no-unused-imports": "error",
-    "react-refresh/only-export-components": [
-      "warn",
-      { allowConstantExport: true },
-    ],
+    "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+    "@typescript-eslint/no-explicit-any": "error",
   },
 };
