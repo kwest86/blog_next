@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export async function GET(request: Request) {
+export async function GET(request: Request): Promise<ImageResponse | Response> {
   try {
     const { searchParams } = new URL(request.url);
     const hasTitle = searchParams.has("title");
@@ -29,8 +29,8 @@ export async function GET(request: Request) {
         height: 630,
       },
     );
-  } catch (e: any) {
-    console.log(`${e.message}`);
+  } catch (e) {
+    console.log(`${e instanceof Error ? e.message : "Unknown error"}`);
     return new Response(`Failed to generate the image`, {
       status: 500,
     });
