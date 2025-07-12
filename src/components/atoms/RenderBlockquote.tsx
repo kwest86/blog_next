@@ -1,8 +1,7 @@
 import { ReactElement } from "react";
 import { Box } from "@chakra-ui/react";
-import { Element as HtmlElement } from "html-react-parser";
+import { Element as HtmlElement, domToReact, DOMNode } from "html-react-parser";
 import { Tweet } from "react-twitter-widgets";
-import { renderNodeChildren } from "./RenderNodeChildren";
 
 export const RenderBlockquote = (domNode: HtmlElement): ReactElement => {
   if (domNode.attribs.class === "twitter-tweet") {
@@ -30,7 +29,7 @@ export const RenderBlockquote = (domNode: HtmlElement): ReactElement => {
       borderColor="gray.300"
       width="100%"
     >
-      {renderNodeChildren(domNode)}
+      {domToReact(domNode.children as DOMNode[])}
     </Box>
   );
 };
